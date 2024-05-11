@@ -1,4 +1,3 @@
-
 name: mlops-exaple-tensorflow-regression
 on: [push]
 jobs:

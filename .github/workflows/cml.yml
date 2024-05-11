@@ -3,6 +3,9 @@ on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
+    permissions:
+      contents: write  # Required to commit or modify content in the repository
+      pull-requests: write  # Required to interact with pull requests
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
@@ -23,3 +26,6 @@ jobs:
           cml-publish model_results.png --md >> report.md
           
           cml-send-comment report.md
+      - name: Debug Token Length
+        run: |
+           echo "Token length: ${#MY_TOKEN}"  # For debugging, do not print the actual token
